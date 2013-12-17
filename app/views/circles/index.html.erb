@@ -1,0 +1,11 @@
+<h2>Your Circles</h2>
+
+<ul>
+  <% @circles.each do |circle| %>
+    <li>
+      <%= link_to circle.name, circle_url(circle) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Circle", new_circle_url %>

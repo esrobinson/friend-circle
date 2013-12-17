@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FriendCircle</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div id="session_detail">
+    <% if current_user %>
+      <%= "Hello #{current_user.email}!"%>
+      <%= button_to "Sign Out Here!", session_url, :method => :delete %>
+    <% else %>
+      <%= link_to "Sign In", new_session_url %>
+      <%= link_to "Sign Up", new_user_url %>
+    <% end %>
+  </div>
+
+  <% if flash[:notices] %>
+    <div id="errors">
+      <% flash[:notices].each do |notice| %>
+        <%= notice %>
+      <% end %>
+    </div>
+  <% end %>
+
+
+<%= yield %>
+
+</body>
+</html>

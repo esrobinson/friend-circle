@@ -1,0 +1,12 @@
+<h2>Edit password!</h2>
+
+Hint: it hashes to this: <%= @user.password_digest %>
+
+<form method="POST" action=<%= user_url(@user) %> >
+  <input type="hidden" name="_method" value="put">
+
+  <label for="user_password">Password</label>
+  <input type="password" id="user_password" name="user[password]">
+  <br>
+  <input type="submit" value="Save Changes">
+</form>

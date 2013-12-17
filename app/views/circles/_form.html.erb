@@ -1,0 +1,24 @@
+<% action_url = @circle.persisted? ? circle_url(@circle) : circles_url %>
+
+<form action=<%= action_url %> method="POST">
+  <% if @circle.persisted? %>
+    <input type="hidden" value="PUT" name="_method">
+  <% end %>
+  <label for="circle_name">Circle Name</label>
+  <input type="text" id="circle_name" name="circle[name]"
+    value="<%= @circle.name %>">
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <label for="user_<%= user.id %>"><%= user.email %></label>
+        <input type="checkbox" id="user_<%= user.id %>"
+          name="circle[member_ids][]" value="<%= user.id %>"
+          <%= "selected" if @circle_users.include?(user) %>>
+      </li>
+    <% end %>
+  </ul>
+
+  <% submission_label = @circle.persisted? ? "Save Changes" : "Create Circle"%>
+
+  <input type="submit" value=<%= submission_label %>>
+</form>
