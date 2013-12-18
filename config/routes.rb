@@ -1,4 +1,6 @@
 FriendCircle::Application.routes.draw do
+  root :to => "users#feed"
+
   resources :users, :only => [:new, :create, :edit, :update]
 
   resource :session, :only => [:new, :create, :destroy] do
@@ -8,5 +10,9 @@ FriendCircle::Application.routes.draw do
   end
 
   resources :circles
+
+  resources :posts, :only => [:new, :create, :destroy]
+
+  get "/feed", :to => "users#feed"
 
 end

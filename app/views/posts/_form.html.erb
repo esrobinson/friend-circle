@@ -1,0 +1,26 @@
+<form action=<%= posts_url %> method="POST">
+	<label for="post_body">Post Body</label>
+	<input type="text" id="post_body" name="post[body]">
+	<h5>Links</h5>
+	<ul>
+		<% 3.times do |link_number| %>
+		<li>
+			<label for="<%= "link_#{link_number}" %>">Link</label>
+			<input type="text" id="<%= "link_#{link_number}" %>"
+				name="<%= "links[#{link_number}][url]" %>">
+		</li>
+		<% end %>
+	</ul>
+	<h5>Friend Circles</h5>
+  <ul>
+		<input type="hidden" name="post[circle_ids][]" value="">
+    <% @circles.each do |circle| %>
+      <li>
+        <label for="circle_<%= circle.id %>"><%= circle.name %></label>
+        <input type="checkbox" id="circle_<%= circle.id %>"
+          name="post[circle_ids][]" value="<%= circle.id %>">
+      </li>
+    <% end %>
+  </ul>
+	<input type="submit" value="Submit Post">
+</form>

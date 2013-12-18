@@ -8,12 +8,13 @@
   <input type="text" id="circle_name" name="circle[name]"
     value="<%= @circle.name %>">
   <ul>
+		<input type="hidden" name="circle[member_ids][]" value="">
     <% @users.each do |user| %>
       <li>
         <label for="user_<%= user.id %>"><%= user.email %></label>
         <input type="checkbox" id="user_<%= user.id %>"
           name="circle[member_ids][]" value="<%= user.id %>"
-          <%= "selected" if @circle_users.include?(user) %>>
+          <%= "checked" if @members.include?(user) %>>
       </li>
     <% end %>
   </ul>

@@ -1,0 +1,8 @@
+<%= link_to "Your Circles", circles_url %>
+<br>
+<br>
+<%= link_to "Make a Post!", new_post_url %>
+
+<h2><%= "#{current_user.email}'s feed"%></h2>
+<br>
+	<%= render "posts/post"%>

@@ -2,8 +2,6 @@
 <html>
 <head>
   <title>FriendCircle</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -22,6 +20,7 @@
     <div id="errors">
       <% flash[:notices].each do |notice| %>
         <%= notice %>
+				<br>
       <% end %>
     </div>
   <% end %>

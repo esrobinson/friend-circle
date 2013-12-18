@@ -1,1 +1,11 @@
-YOU HAVE A CIRCLE
+<h2><%= @circle.name%></h2>
+
+<ul>
+	<% @members.each do |member| %>
+	<li><%= member.email %></li>
+	<% end %>
+</ul>
+
+<%= link_to "Edit this circle", edit_circle_url(@circle) %>
+
+<%= render "posts/post" %>

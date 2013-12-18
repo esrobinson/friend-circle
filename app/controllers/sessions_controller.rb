@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
                                       params[:user][:password])
     if @user
       login!(@user)
-      redirect_to new_user_url
+      redirect_to feed_url
     else
       flash.now[:notices] = ["Invalid email/password"]
       render :new

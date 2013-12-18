@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_logged_in, :only => [:edit, :update, :feed]
+
   def new
     render :new
   end
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login! @user
-      redirect_to new_user_url
+      redirect_to feed_url
     else
       flash.now[:notices] = @user.errors.full_messages
       render :new
@@ -25,11 +27,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update_attributes(params[:user])
-      redirect_to edit_user_url(@user)
+      redirect_to feed_url
       @user.set_password_reset_token!
     else
       flash.now[:notices] = @user.errors.full_messages
       render :edit
     end
+  end
+
+  def feed
+    @posts = current_user.posts
+                         .includes(:links)
+                         .includes(:author)
+                         .order("created_at DESC")
+                         .uniq
+    render :feed
   end
 end
