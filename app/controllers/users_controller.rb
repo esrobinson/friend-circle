@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
     if @user.save
       login! @user
       redirect_to feed_url
@@ -36,10 +35,14 @@ class UsersController < ApplicationController
   end
 
   def feed
+    order_by = params[:order] == 'n' ? "created_at" : "score"
+
+
     @posts = current_user.posts
                          .includes(:links)
                          .includes(:author)
-                         .order("created_at DESC")
+                         .includes(:upvoters)
+                         .order("#{order_by} DESC")
                          .uniq
     render :feed
   end

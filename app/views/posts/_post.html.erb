@@ -1,10 +1,13 @@
 <ul>
 	<% @posts.each do |post| %>
 		<li>
-			<p><%= post.body %><p>
+			<p><%="#{post.body} -- Score: #{post.score}"%><p>
 			<p><%= post.author.email%></p>
 			<% if post.author == current_user %>
 				<%= button_to "Remove Post", post_url(post), :method => :delete%>
+			<% end %>
+			<% unless post.upvoters.include?(current_user) %>
+				<%= button_to "Upvote", post_upvotes_url(post), :method => :post%>
 			<% end %>
 			<ul>
 				<% post.links.each do |link| %>

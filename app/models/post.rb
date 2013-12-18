@@ -17,6 +17,8 @@ class Post < ActiveRecord::Base
   has_many :post_shares, :inverse_of => :post
   has_many :circles, :through => :post_shares
   has_many :links, :inverse_of => :post
+  has_many :upvotes
+  has_many :upvoters, :through => :upvotes, :source => :user
 
   accepts_nested_attributes_for :post_shares
 end

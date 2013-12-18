@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131217223109) do
+ActiveRecord::Schema.define(:version => 20131218005055) do
 
   create_table "circles", :force => true do |t|
     t.string   "name",       :null => false
@@ -56,9 +56,20 @@ ActiveRecord::Schema.define(:version => 20131217223109) do
     t.integer  "author_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "score",      :null => false
   end
 
   add_index "posts", ["author_id"], :name => "index_posts_on_author_id"
+  add_index "posts", ["score"], :name => "index_posts_on_score"
+
+  create_table "upvotes", :force => true do |t|
+    t.integer  "post_id",    :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "upvotes", ["post_id", "user_id"], :name => "index_upvotes_on_post_id_and_user_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                :null => false

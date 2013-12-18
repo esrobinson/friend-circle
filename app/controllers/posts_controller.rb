@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
+    @post.score = 0
     @post.author = current_user
     links = params[:links].values.reject{ |value| value["url"].empty? }
     @post.links.new(links)

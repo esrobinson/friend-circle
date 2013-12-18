@@ -11,7 +11,11 @@ FriendCircle::Application.routes.draw do
 
   resources :circles
 
-  resources :posts, :only => [:new, :create, :destroy]
+  resources :posts, :only => [:new, :create, :destroy] do
+    resources :upvotes, :only => [:create]
+  end
+
+  resources :upvotes, :only => [:destroy]
 
   get "/feed", :to => "users#feed"
 

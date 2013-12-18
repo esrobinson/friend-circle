@@ -4,5 +4,8 @@
 <%= link_to "Make a Post!", new_post_url %>
 
 <h2><%= "#{current_user.email}'s feed"%></h2>
+ Order By:
+ <%= link_to "Best", feed_url %>
+ <%= link_to "New", feed_url(:order => 'n') %>
 <br>
 	<%= render "posts/post"%>
