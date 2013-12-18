@@ -5,7 +5,7 @@
 
 <h2><%= "#{current_user.email}'s feed"%></h2>
  Order By:
- <%= link_to "Best", feed_url %>
- <%= link_to "New", feed_url(:order => 'n') %>
+ <%= link_to "Best", feed_url(:order => 'best') %>
+ <%= link_to "New", feed_url(:order => 'new') %>
 <br>
 	<%= render "posts/post"%>

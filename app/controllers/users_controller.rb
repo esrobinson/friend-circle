@@ -34,8 +34,10 @@ class UsersController < ApplicationController
     end
   end
 
+  ORDERS = {'new' => 'created_at', 'best' => 'score'}
+
   def feed
-    order_by = params[:order] == 'n' ? "created_at" : "score"
+    order_by = ORDERS[params[:order]] || 'score'
 
 
     @posts = current_user.posts
